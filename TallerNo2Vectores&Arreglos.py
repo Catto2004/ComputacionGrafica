@@ -31,8 +31,12 @@ Mensajes = [
 
 # ############ Funciones de Lista
 
-def FiltrarLista():
-    pass
+def FiltrarLista(Lista, Opcion):  # Opcion = 0 -> Pares, Opcion = 1 -> Impares
+    ListaFiltrada = []
+    for i in Lista:
+        if i % 2 == Opcion:
+            ListaFiltrada.append(i)
+    return ListaFiltrada
 
 def BuscarLista(Lista, Elemento):
     pass
