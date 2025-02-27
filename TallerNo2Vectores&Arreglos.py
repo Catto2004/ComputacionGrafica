@@ -29,6 +29,29 @@ Mensajes = [
     "Feliz Jueves!"
 ]
 
+# ############ Funciones de la Calculadora
+
+def Sumar(A, B):
+    return A + B
+
+def Restar(A,B):
+    return A - B
+
+def Multiplicar(A, B):
+    return A * B
+
+def Dividir(A, B):
+    return A / B
+
+def MenuCalculadora():
+    Salida = False
+    A, B = None, None
+
+    while not Salida:
+        print(Cabecera)
+        print("\033[1;32m    Calculadora Básica:\033[0m")
+
+
 # ############ Funciones de Lista
 
 def FiltrarLista(Lista, Opcion):  # Opcion = 0 -> Pares, Opcion = 1 -> Impares
@@ -39,13 +62,32 @@ def FiltrarLista(Lista, Opcion):  # Opcion = 0 -> Pares, Opcion = 1 -> Impares
     return ListaFiltrada
 
 def BuscarLista(Lista, Elemento):
-    pass
+    for i in Lista:
+        if i == Elemento:
+            return True
+    return False
 
-def ConversorTemperaturaLista(Lista, Opcion):
-    pass
+def ConversorTemperaturaLista(Lista, Opcion): # Opcion = 0 -> C a F, Opcion = 1 -> F a C
+    if Opcion == 0:   # C a F
+        ListaConvertida = list(map(lambda c: c * 9/5 + 32, Lista))
+    elif Opcion == 1: # F a C
+        ListaConvertida = list(map(lambda f: (f - 32) * 5/9, Lista))
 
-def SistemaCalificaciones(Lista):
-    pass
+    return ListaConvertida
+
+def SistemaCalificaciones(Lista): # A >= 4, B >= 3, C >= 2, D >= 1, F < 0
+    ListaLetras = []
+    for i in Lista:
+        if i >= 90:
+            ListaLetras.append("A")
+        elif i >= 80:
+            print(f"Calificación: {i} -> B")
+        elif i >= 70:
+            print(f"Calificación: {i} -> C")
+        elif i >= 60:
+            print(f"Calificación: {i} -> D")
+        else:
+            print(f"Calificación: {i} -> F")
 
 # ############ Funciones de Tuplas
 
@@ -92,6 +134,14 @@ def Adios():
 def Error():
     print("\n\033[1;31m    Error: Opción no válida.\a\033[0m")
     input("\033[3m    Presione \033[1mEnter\033[0m\033[3m para continuar...\033[0m")
+
+def ValidarEntero():
+    while True:
+        try:
+            Numero = int(input())
+            return Numero
+        except ValueError:
+            print("\033[1;31m    Error: Ingrese un número entero.\a\033[0m")
 
 def MostrarVector(A, Nombre, Color):
     print(f"\033[{Color}m{Nombre}\033[0m = \033[{Color}m{A}\033[0m")
