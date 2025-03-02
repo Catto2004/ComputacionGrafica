@@ -89,36 +89,109 @@ def SistemaCalificaciones(Lista): # A >= 4, B >= 3, C >= 2, D >= 1, F < 0
         else:
             print(f"Calificación: {i} -> F")
 
-# ############ Funciones de Tuplas
-
-def OrdenarTupla():
-    pass
-
 # ############ Funciones de la Agenda
 
-Contactos = {
-
-}
-
-def MenuAgenda():
-    pass
+Contactos = {}
 
 def MostrarContactos():
-    pass
+    if Contactos:
+        print("\nLista de contactos:")
+        for nombre, telefono in Contactos.items():
+            print(f"{nombre}: {telefono}")
+    else:
+        print("\nNo hay contactos en la agenda.")
+    input("Presione Enter para continuar...")
 
 def AgregarContacto():
-    pass
+    nombre = input("Ingrese el nombre del contacto: ")
+    telefono = input("Ingrese el número de teléfono: ")
+    Contactos[nombre] = telefono
+    print(f"Contacto {nombre} agregado exitosamente.")
+    input("Presione Enter para continuar...")
 
 def BuscarContacto():
-    pass
+    nombre = input("Ingrese el nombre del contacto a buscar: ")
+    if nombre in Contactos:
+        print(f"{nombre}: {Contactos[nombre]}")
+    else:
+        print("Contacto no encontrado.")
+    input("Presione Enter para continuar...")
 
 def EliminarContacto():
-    pass
+    nombre = input("Ingrese el nombre del contacto a eliminar: ")
+    if nombre in Contactos:
+        del Contactos[nombre]
+        print(f"Contacto {nombre} eliminado.")
+    else:
+        print("Contacto no encontrado.")
+    input("Presione Enter para continuar...")
 
-# ############ Funciones Contador, Validación Parentesis y Contraseñas
+def MenuAgenda():
+    Salida = False
+    while not Salida:
+        os.system("cls")
+        print(Cabecera)
+        print("\033[1;32m    Agenda:\033[0m")
+        print("\033[1;33m1.\033[0m Mostrar contactos")
+        print("\033[1;33m2.\033[0m Agregar contacto")
+        print("\033[1;33m3.\033[0m Buscar contacto")
+        print("\033[1;33m4.\033[0m Eliminar contacto")
+        print("\033[1;31m5.\033[0m Salir")
+        try:
+            opcion = ValidarEntero()
+            if opcion == 1:
+                MostrarContactos()
+            elif opcion == 2:
+                AgregarContacto()
+            elif opcion == 3:
+                BuscarContacto()
+            elif opcion == 4:
+                EliminarContacto()
+            elif opcion == 5:
+                print("Saliendo de la agenda...")
+                Salida = True
+            else:
+                Error()
+        except Exception:
+            Error()
 
-def ContadorLetras():
-    pass
+# ############ Funciones Contador, Validación Parentesis, Ordenamiento Tuplas y Contraseñas
+
+def ContadorLetras(Cadena):
+    Cadena = Cadena.lower()
+    Palabras = Cadena.split()
+    Contador = {
+        "a": 0, "b": 0, "c": 0, "d": 0, "e": 0, "f": 0, "g": 0, "h": 0, "i": 0, "j": 0, "k": 0, "l": 0, "m": 0,
+        "n": 0, "o": 0, "p": 0, "q": 0, "r": 0, "s": 0, "t": 0, "u": 0, "v": 0, "w": 0, "x": 0, "y": 0, "z": 0
+    }
+
+    for palabra in Palabras:
+        Contador[palabra] += 1
+
+    return dict(sorted(Contador.items(), key=lambda item: item[1], reverse=True))
+
+def ValidarParentesis(Cadena):
+    contador = 0
+    
+    for caracter in Cadena:
+        if caracter == '(':
+            contador += 1
+        elif caracter == ')':
+            contador -= 1
+        if contador < 0:
+            return False
+    
+    return contador == 0
+
+def OrdenarTuplas(ListaTuplas):
+    return sorted(ListaTuplas, key=lambda x: x[1])
+
+def GenerarContrasena(Longitud):
+    caracteres = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_=+"
+    contrasena = ""
+    for _ in range(Longitud):
+        contrasena += random.choice(caracteres)
+    return contrasena
 
 # ############ Funciones Varias
 def Adios():
