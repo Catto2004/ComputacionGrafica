@@ -1,5 +1,4 @@
 import os
-import math
 import random
 import numpy as np
 
@@ -43,17 +42,7 @@ def Multiplicar(A, B):
 def Dividir(A, B):
     return A / B
 
-def MenuCalculadora():
-    Salida = False
-    A, B = None, None
-
-    while not Salida:
-        print(Cabecera)
-        print("\033[1;32m    Calculadora Básica:\033[0m")
-
-
 # ############ Funciones de Lista
-
 def FiltrarLista(Lista, Opcion):  # Opcion = 0 -> Pares, Opcion = 1 -> Impares
     ListaFiltrada = []
     for i in Lista:
@@ -90,7 +79,6 @@ def SistemaCalificaciones(Lista): # A >= 4, B >= 3, C >= 2, D >= 1, F < 0
             print(f"Calificación: {i} -> F")
 
 # ############ Funciones de la Agenda
-
 Contactos = {}
 
 def MostrarContactos():
@@ -126,37 +114,7 @@ def EliminarContacto():
         print("Contacto no encontrado.")
     input("Presione Enter para continuar...")
 
-def MenuAgenda():
-    Salida = False
-    while not Salida:
-        os.system("cls")
-        print(Cabecera)
-        print("\033[1;32m    Agenda:\033[0m")
-        print("\033[1;33m1.\033[0m Mostrar contactos")
-        print("\033[1;33m2.\033[0m Agregar contacto")
-        print("\033[1;33m3.\033[0m Buscar contacto")
-        print("\033[1;33m4.\033[0m Eliminar contacto")
-        print("\033[1;31m5.\033[0m Salir")
-        try:
-            opcion = ValidarEntero()
-            if opcion == 1:
-                MostrarContactos()
-            elif opcion == 2:
-                AgregarContacto()
-            elif opcion == 3:
-                BuscarContacto()
-            elif opcion == 4:
-                EliminarContacto()
-            elif opcion == 5:
-                print("Saliendo de la agenda...")
-                Salida = True
-            else:
-                Error()
-        except Exception:
-            Error()
-
 # ############ Funciones Contador, Validación Parentesis, Ordenamiento Tuplas y Contraseñas
-
 def ContadorLetras(Cadena):
     Cadena = Cadena.lower()
     Palabras = Cadena.split()
@@ -211,7 +169,7 @@ def Error():
 def ValidarEntero():
     while True:
         try:
-            Numero = int(input())
+            Numero = int(input("\n > "))
             return Numero
         except ValueError:
             print("\033[1;31m    Error: Ingrese un número entero.\a\033[0m")
@@ -219,34 +177,173 @@ def ValidarEntero():
 def MostrarVector(A, Nombre, Color):
     print(f"\033[{Color}m{Nombre}\033[0m = \033[{Color}m{A}\033[0m")
 
+# ############ SubMenus
+def MenuLPTC(): # Contador de letras, Validación de paréntesis, Ordenar tuplas y Generador de contraseñas
+    Salida = False
+    while not Salida:
+        os.system("cls")
+        print(Cabecera)
+        print("\033[1;32m    Menu Listas:\033[0m\n")
+        print("\033[1;33m1.\033[0m Contador de Letras")
+        print("\033[1;33m2.\033[0m Validación de Paréntesis")
+        print("\033[1;33m3.\033[0m Ordenar Tuplas")
+        print("\033[1;33m4.\033[0m Generador de Contraseñas")
+        print("\033[1;31m5.\033[0m Salir")
+        opt = ValidarEntero()
+
+        if opt == 1:
+            Cadena = input("Ingrese una cadena: ")
+            print(ContadorLetras(Cadena))
+            input("\033[3m    Presione \033[1mEnter\033[0m\033[3m para continuar...\033[0m")
+        elif opt == 2:
+            Cadena = input("Ingrese una cadena de paréntesis: ")
+            print("Válida" if ValidarParentesis(Cadena) else "Inválida")
+            input("\033[3m    Presione \033[1mEnter\033[0m\033[3m para continuar...\033[0m")
+        elif opt == 3:
+            ListaTuplas = [("A", 3), ("B", 1), ("C", 2)]
+            print(OrdenarTuplas(ListaTuplas))
+            input("\033[3m    Presione \033[1mEnter\033[0m\033[3m para continuar...\033[0m")
+        elif opt == 4:
+            print("Ingrese la longitud de la contraseña: ")
+            Longitud = ValidarEntero()
+            print(GenerarContrasena(Longitud))
+            input("\033[3m    Presione \033[1mEnter\033[0m\033[3m para continuar...\033[0m")
+        elif opt == 5:
+            Salida = True
+        else:
+            Error()
+
+def MenuAgenda(): # Agenda de contactos
+    Salida = False
+    while not Salida:
+        os.system("cls")
+        print(Cabecera)
+        print("\033[1;32m    Menú Agenda De Contactos:\033[0m\n")
+        print("\033[1;33m1.\033[0m Mostrar contactos")
+        print("\033[1;33m2.\033[0m Agregar contacto")
+        print("\033[1;33m3.\033[0m Buscar contacto")
+        print("\033[1;33m4.\033[0m Eliminar contacto")
+        print("\033[1;31m5.\033[0m Salir")
+        try:
+            opcion = ValidarEntero()
+            if opcion == 1:
+                MostrarContactos()
+            elif opcion == 2:
+                AgregarContacto()
+            elif opcion == 3:
+                BuscarContacto()
+            elif opcion == 4:
+                EliminarContacto()
+            elif opcion == 5:
+                Salida = True
+            else:
+                Error()
+        except Exception:
+            Error()
+
+def MenuListas(): # Filtrar, Buscar, Conversor de Temperatura y Sistema de Calificaciones
+    Salida = False
+    while not Salida:
+        os.system("cls")
+        print(Cabecera)
+        print("\033[1;32m    Menú Listas:\033[0m\n")
+        print("\033[1;33m1.\033[0m Filtrar Lista")
+        print("\033[1;33m2.\033[0m Buscar en Lista")
+        print("\033[1;33m3.\033[0m Conversor de Temperatura")
+        print("\033[1;33m4.\033[0m Sistema de Calificaciones")
+        print("\033[1;31m5.\033[0m Salir")
+        opt = ValidarEntero()
+
+        if opt == 1:
+            Lista = list(map(int, input("Ingrese números separados por espacios: ").split()))
+            Opcion = int(input("Ingrese 0 para Pares o 1 para Impares: "))
+            print("Resultado:", FiltrarLista(Lista, Opcion))
+            input("\033[3m    Presione \033[1mEnter\033[0m\033[3m para continuar...\033[0m")
+        elif opt == 2:
+            Lista = list(map(int, input("Ingrese números separados por espacios: ").split()))
+            Elemento = int(input("Ingrese el número a buscar: "))
+            print("Resultado:", "Encontrado" if BuscarLista(Lista, Elemento) else "No encontrado")
+            input("\033[3m    Presione \033[1mEnter\033[0m\033[3m para continuar...\033[0m")
+        elif opt == 3:
+            Lista = list(map(float, input("Ingrese temperaturas separadas por espacios: ").split()))
+            Opcion = int(input("Ingrese 0 para C a F o 1 para F a C: "))
+            print("Resultado:", ConversorTemperaturaLista(Lista, Opcion))
+            input("\033[3m    Presione \033[1mEnter\033[0m\033[3m para continuar...\033[0m")
+        elif opt == 4:
+            Lista = list(map(int, input("Ingrese calificaciones separadas por espacios: ").split()))
+            print("Resultado:", SistemaCalificaciones(Lista))
+            input("\033[3m    Presione \033[1mEnter\033[0m\033[3m para continuar...\033[0m")
+        elif opt == 5:
+            Salida = True
+        else:
+            Error()
+
+def MenuCalculadora():
+    Salida = False
+    while not Salida:
+        os.system("cls")
+        print(Cabecera)
+        print("\033[1;32m    Menú Calculadora:\033[0m\n")
+        print("\033[1;33m1.\033[0m Sumar")
+        print("\033[1;33m2.\033[0m Restar")
+        print("\033[1;33m3.\033[0m Multiplicar")
+        print("\033[1;33m4.\033[0m Dividir")
+        print("\033[1;31m5.\033[0m Salir")
+        opt = ValidarEntero()
+
+        if opt == 1:
+            A = float(input("Ingrese el primer número: "))
+            B = float(input("Ingrese el segundo número: "))
+            print(f"Resultado: {A} + {B} = {Sumar(A, B)}")
+            input("\033[3m    Presione \033[1mEnter\033[0m\033[3m para continuar...\033[0m")
+        elif opt == 2:
+            A = float(input("Ingrese el primer número: "))
+            B = float(input("Ingrese el segundo número: "))
+            print(f"Resultado: {A} - {B} = {Restar(A, B)}")
+            input("\033[3m    Presione \033[1mEnter\033[0m\033[3m para continuar...\033[0m")
+        elif opt == 3:
+            A = float(input("Ingrese el primer número: "))
+            B = float(input("Ingrese el segundo número: "))
+            print(f"Resultado: {A} * {B} = {Multiplicar(A, B)}")
+            input("\033[3m    Presione \033[1mEnter\033[0m\033[3m para continuar...\033[0m")
+        elif opt == 4:
+            A = float(input("Ingrese el primer número: "))
+            B = float(input("Ingrese el segundo número: "))
+            print(f"Resultado: {A} / {B} = {Dividir(A, B)}")
+            input("\033[3m    Presione \033[1mEnter\033[0m\033[3m para continuar...\033[0m")
+        elif opt == 5:
+            Salida = True
+        else:
+            Error()
+
 # ############ Menu Principal
 def Menu():
     Salida = False
     while not Salida:
-
         os.system("cls")
         print(Cabecera)
         print(Gato)
-
-        print("Opciones:")
-        print("\033[1;33m1.\033[0m Conversor de Unidades.")
-        print("\033[1;33m2.\033[0m Física.")
-        print("\033[1;33m3.\033[0m Vectores.")
-        print("\033[1;31m4.\033[0m Salir.")
-        opt = int(input("\n Ingrese una opción: "))
+        print("\033[1;32m    Menú Principal:\033[0m\n")
+        print("\033[1;33m1.\033[0m Calculadora")
+        print("\033[1;33m2.\033[0m Filtrar, Buscar, Conversor de Temperatura y Sistema de Calificaciones.")
+        print("\033[1;33m3.\033[0m Agenda de contactos usando diccionarios")
+        print("\033[1;33m4.\033[0m Contador de letras, Validación de paréntesis, Ordenar tuplas y Generador de contraseñas.")
+        print("\033[1;31m5.\033[0m Salir")
+        opt = ValidarEntero()
 
         if opt == 1:
-            pass
+            MenuCalculadora()
         elif opt == 2:
-            pass
+            MenuListas()
         elif opt == 3:
-            pass
+            MenuAgenda()
         elif opt == 4:
+            MenuLPTC()
+        elif opt == 5:
             Salida = True
             Adios()
         else:
             Error()
-
 
 # ############ Ejecución
 Menu()
