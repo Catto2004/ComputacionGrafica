@@ -115,11 +115,10 @@ print(f"\nVector C modificado: \033[33m{VectorC_mod}\033[0m")
 
 # 14. Determine la moda del vector C.
 
-from scipy import stats
-
-print("\n\033[3m14. Determine la moda del vector C.\033[0m")
-moda = stats.mode(VectorC, keepdims=True)
-print(f"\nModa del vector C: \033[33m{moda.mode[0]}\033[0m con frecuencia: {moda.count[0]}")
+print("\n\033[3m14. Determine la moda del vector C usando solo Numpy.\033[0m")
+valores, conteo = np.unique(VectorC, return_counts=True)
+moda = valores[np.argmax(conteo)]
+print(f"\nModa del vector C: \033[33m{moda}\033[0m con frecuencia: {np.max(conteo)}")
 
 # 15. Ordene el Vector C de menor a mayor.
 
