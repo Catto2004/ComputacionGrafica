@@ -103,29 +103,48 @@ print(f"\n\033[1;33mD\033[0m = \033[33m{VectorD}\033[0m")
 
 # 12. Cree un vector E a partir del vector C con los elementos mayores que 5 y menores que 15.
 
+print("\n\033[3m12. Cree un vector E a partir del vector C con los elementos mayores que 5 y menores que 15.\033[0m")
+VectorE = VectorC[(VectorC > 5) & (VectorC < 15)]
+print(f"\n\033[1;33mE\033[0m = \033[33m{VectorE}\033[0m")
 
+# 13. Cambie los elementos 5 y 15 del vector C por ‘7’.
 
-# 13. Cambie los elementos 5 y 15 elemento del vector C por ‘7’.
-
-
+print("\n\033[3m13. Cambie los elementos 5 y 15 del vector C por ‘7’.\033[0m")
+VectorC_mod = np.where((VectorC == 5) | (VectorC == 15), 7, VectorC)
+print(f"\nVector C modificado: \033[33m{VectorC_mod}\033[0m")
 
 # 14. Determine la moda del vector C.
 
+from scipy import stats
 
+print("\n\033[3m14. Determine la moda del vector C.\033[0m")
+moda = stats.mode(VectorC, keepdims=True)
+print(f"\nModa del vector C: \033[33m{moda.mode[0]}\033[0m con frecuencia: {moda.count[0]}")
 
 # 15. Ordene el Vector C de menor a mayor.
 
-
+print("\n\033[3m15. Ordene el Vector C de menor a mayor.\033[0m")
+VectorC_sorted = np.sort(VectorC)
+print(f"\nVector C ordenado: \033[33m{VectorC_sorted}\033[0m")
 
 # 16. Multiplique el vector C por 10.
 
-
+print("\n\033[3m16. Multiplique el vector C por 10.\033[0m")
+VectorC_mult10 = VectorC * 10
+print(f"\nVector C * 10: \033[33m{VectorC_mult10}\033[0m")
 
 # 17. Cambie los elementos del 6 al 8 de la matriz C por 60, 70 y 80 respectivamente.
 
-
+print("\n\033[3m17. Cambie los elementos del 6 al 8 de la matriz C por 60, 70 y 80 respectivamente.\033[0m")
+VectorC_copy = VectorC.copy()
+VectorC_copy[5:8] = [60, 70, 80]
+print(f"\nVector C modificado: \033[33m{VectorC_copy}\033[0m")
 
 # 18. Cambie los elementos del 14 al 16 de la matriz C por 140, 150 y 160 respectivamente.
+
+print("\n\033[3m18. Cambie los elementos del 14 al 16 de la matriz C por 140, 150 y 160 respectivamente.\033[0m")
+VectorC_copy[13:16] = [140, 150, 160]
+print(f"\nVector C modificado: \033[33m{VectorC_copy}\033[0m")
 
 
 """
