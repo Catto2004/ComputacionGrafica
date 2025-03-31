@@ -1,6 +1,9 @@
 # Computación Grafica: Taller N.10: Imagenes Termograficas en Python by JDRB
 import os
-import random
+import numpy as np
+from PIL import Image
+import matplotlib.pyplot as plt
+import scipy.stats as stats
 
 # ############ Variables Globales
 Cabecera = """
@@ -55,7 +58,7 @@ GradosC = (TemMax-TemMin)*D/2^NBits+TemMin
 # 4. Marque el punto mínimo de temperatura en la grafica de la imagen
 #    termográfica (para ello use un Rombo de color cian).
 
-""" Nota:
+""" NOTAS:
 - MatrizCenti contiene tiene la matriz con los datos convertidos a grados
 centígrados
 - Use la función shape de numpy para obtener las dimensiones de la matriz
