@@ -1,10 +1,10 @@
-# Computación Grafica: Taller N.#: ##### en Python by JDRB
+# Computación Grafica: Taller N.10: Imagenes Termograficas en Python by JDRB
 import os
 import random
 
 # ############ Variables Globales
 Cabecera = """
-\033[1;33m    Computación Gráfica:\033[0m\033[33m Taller N.#: ##### en Python. \033[0m
+\033[1;33m    Computación Gráfica:\033[0m\033[33m Taller N.10: Imagenes Termograficas en Python. \033[0m
 \033[3m    By Juan Diego Ruiz B. \033[0m
 """
 Gato = """\033[93m             ^~^  ,
@@ -12,60 +12,52 @@ Gato = """\033[93m             ^~^  ,
             /   \/
            (\|||/)\033[0m  
 """
-Mensajes = [
-    "¡Adios!",
-    "さようなら!",
-    "Good Bye!",
-    "Tschüss!",
-    "Ciao!",
-    "Au Revoir!",
-    "Увидимся!",
-    "안녕히 가세요!",
-    "再见!",
-    "Γεια σου!",
-    "Sometimes goodbye is a second chance!",
-    "Auf Wiedersehen!",
-    "Hurrengo arte!",
-    "Feliz Jueves!"
+FotoTermica = [
+    r"C:\Users\joseo\OneDrive\Escritorio\Code\ComputacionGrafica\ComputacionGrafica\TallerNo10\FotoTermica1.tiff",
+    r"C:\Users\joseo\OneDrive\Escritorio\Code\ComputacionGrafica\ComputacionGrafica\TallerNo10\FotoTermica2.tiff",
+    r"C:\Users\joseo\OneDrive\Escritorio\Code\ComputacionGrafica\ComputacionGrafica\TallerNo10\FotoTermica3.tiff",
+    r"C:\Users\joseo\OneDrive\Escritorio\Code\ComputacionGrafica\ComputacionGrafica\TallerNo10\FotoTermica4.tiff"
 ]
 
-# ############ Funciones Varias
-def Adios():
-    os.system("cls")
-    print("")
-    print("\033[1m")
-    print(f"           {random.choice(Mensajes)}\033[0m")
-    print("        -----v------------")
-    print(Gato)
-    print("\n\n\n\n\n")
-    exit()
+# ############ Ejecución del Programa
+os.system("cls")
+print(Cabecera)
+print(Gato)
 
-def Error():
-    print("\n\033[1;31m    Error: Opción no válida.\a\033[0m")
-    input("\033[3m    Presione \033[1mEnter\033[0m\033[3m para continuar...\033[0m")
+""" TEORIA
+Una cámara térmica es un dispositivo sin contacto que detecta la energía
+infrarroja (calor) y la convierte en una señal electrónica, que luego se procesa
+para producir una foto térmica en un monitor de video y realizar cálculos de
+temperatura. La imagen térmica se almacena en formato tiff y básicamente es
+una matriz de valores en una escala entre 0 y 2^(14) bits.
 
-# ############ Función Menú
-def Menu():
-    Salida = False
-    while not Salida:
+Para transformar la matriz en datos con temperatura en grados centígradosse
+usa la siguiente formula.
+D= matriz con los datos de la imagen
+TemMin=-40
+TemMax=160
+NBits=14
+GradosC = (TemMax-TemMin)*D/2^NBits+TemMin
+"""
 
-        os.system("cls")
-        print(Cabecera)
-        print(Gato)
+# 1. Calcule y muestre en un print la temperatura promedio, medina y moda,
+#    la temperatura máxima (con sus coordenadas x,y) y la temperatura
+#    mínima de la imagen (con sus coordenadas x,y).
 
-        print("Opciones:")
-        print("\033[1;33m1.\033[0m #####.")
-        print("\033[1;31m4.\033[0m Salir.")
-        opt = int(input("\n Ingrese una opción: "))
+# 2. Realice una figura llamada “Imagen Termográfica” donde muestre en el
+#    primer subplot la imagen termográfica, en el segundo subplot muestre
+#    el histograma de la imagen (para el histograma use los componentes
+#    histogram de Numpy y hist de Matplotlib).
 
-        if opt == 1:
-            pass
-        elif opt == 4:
-            Salida = True
-            Adios()
-        else:
-            Error()
+# 3. Marque el punto máximo de temperatura en la grafica de la imagen
+#    termográfica (para ello use un Círculo de color Magenta).
 
+# 4. Marque el punto mínimo de temperatura en la grafica de la imagen
+#    termográfica (para ello use un Rombo de color cian).
 
-# ############ Ejecución
-Menu()
+""" Nota:
+- MatrizCenti contiene tiene la matriz con los datos convertidos a grados
+centígrados
+- Use la función shape de numpy para obtener las dimensiones de la matriz
+(Filas, Columnas, Capas)
+"""

@@ -14,7 +14,7 @@ Gato = """\033[93m             ^~^  ,
             /   \/
            (\|||/)\033[0m  
 """
-RutaImagen = "Imagenes/"
+RutaImagen = r"C:\Users\joseo\OneDrive\Escritorio\Code\ComputacionGrafica\ComputacionGrafica\TallerNo8\GatoEnojado.png"
 
 # ############ Ejecución del Programa
 os.system("cls")
